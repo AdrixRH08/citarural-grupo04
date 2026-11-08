@@ -4,7 +4,8 @@ class Paciente:
         self._nombres = nombres
         self._apellidos = apellidos
         self._fecha_nacimiento = fecha_nacimiento
-        self._telefono = telefono
+        self._telefono = None
+        self.telefono = telefono
         self.dni = dni  # pasa por el setter para validar
 
     # --- DNI ---
@@ -53,7 +54,10 @@ class Paciente:
 
     @telefono.setter
     def telefono(self, valor):
-        self._telefono = valor
+        if len(valor) == 9 and valor.isdigit():
+            self._telefono = valor
+        else:
+            raise ValueError("El teléfono debe tener 9 dígitos numéricos.")
 
     def __str__(self):
         return f"{self.nombres} {self.apellidos} (DNI: {self.dni})"

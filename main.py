@@ -16,6 +16,52 @@ def mostrar_menu():
     print("4. Ver citas")
     print("5. Salir")
 
+def registrar_paciente():
+    print("\n--- Registrar paciente ---")
+
+    while True:
+        dni = input("DNI (8 dígitos): ")
+        if len(dni) == 8 and dni.isdigit():
+            break
+        print("Error: el DNI debe tener exactamente 8 dígitos numéricos. Intenta de nuevo.")
+
+    nombres = input("Nombres: ")
+    apellidos = input("Apellidos: ")
+    fecha_nacimiento = input("Fecha de nacimiento (AAAA-MM-DD): ")
+
+    while True:
+        telefono = input("Teléfono (9 dígitos): ")
+        if len(telefono) == 9 and telefono.isdigit():
+            break
+        print("Error: el teléfono debe tener exactamente 9 dígitos numéricos. Intenta de nuevo.")
+
+    paciente = Paciente(dni, nombres, apellidos, fecha_nacimiento, telefono)
+    pacientes.append(paciente)
+    print(f"Paciente registrado: {paciente}")
+    print(f"Total de pacientes: {len(pacientes)}")
+
+def registrar_medico():
+    print("\n--- Registrar médico ---")
+
+    while True:
+        cmp = input("CMP (5 o 6 dígitos): ")
+        if cmp.isdigit() and len(cmp) in (5, 6):
+            break
+        print("Error: el CMP debe tener 5 o 6 dígitos numéricos. Intenta de nuevo.")
+
+    nombres = input("Nombres: ")
+    apellidos = input("Apellidos: ")
+    especialidad = input("Especialidad: ")
+    while True:
+        telefono = input("Teléfono (9 dígitos): ")
+        if len(telefono) == 9 and telefono.isdigit():
+            break
+        print("Error: el teléfono debe tener exactamente 9 dígitos numéricos. Intenta de nuevo.")
+
+    medico = Medico(cmp, nombres, apellidos, especialidad, telefono)
+    medicos.append(medico)
+    print(f"Médico registrado: {medico}")
+    print(f"Total de médicos: {len(medicos)}")
 
 def main():
     while True:
@@ -24,9 +70,9 @@ def main():
 
         match opcion:
             case "1":
-                print("Registrar paciente (pendiente)")
+                registrar_paciente()
             case "2":
-                print("Registrar médico (pendiente)")
+                registrar_medico()
             case "3":
                 print("Registrar cita (pendiente)")
             case "4":

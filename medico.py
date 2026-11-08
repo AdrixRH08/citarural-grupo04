@@ -4,7 +4,8 @@ class Medico:
         self._nombres = nombres
         self._apellidos = apellidos
         self._especialidad = especialidad
-        self._telefono = telefono
+        self._telefono = None
+        self.telefono = telefono
         self.cmp = cmp  # pasa por el setter para validar
 
     # --- CMP ---
@@ -53,7 +54,10 @@ class Medico:
 
     @telefono.setter
     def telefono(self, valor):
-        self._telefono = valor
+        if len(valor) == 9 and valor.isdigit():
+            self._telefono = valor
+        else:
+            raise ValueError("El teléfono debe tener 9 dígitos numéricos.")
 
     def __str__(self):
         return f"Dr(a). {self.nombres} {self.apellidos} - {self.especialidad} (CMP: {self.cmp})"
