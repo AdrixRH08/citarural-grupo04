@@ -40,6 +40,6 @@ citarural-grupo04/
 - [x] Clase Paciente
 - [x] Clase Médico
 - [x] Clase RegistrarCita
-- [ ] Menú en main.py
+- [x] Menú en main.py
 - [ ] Diagrama de clases UML
 - [ ] Informe técnico
