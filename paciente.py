@@ -5,7 +5,7 @@ class Paciente:
         self._apellidos = apellidos
         self._fecha_nacimiento = fecha_nacimiento
         self._telefono = telefono
-        self.dni = dni
+        self.dni = dni  # pasa por el setter para validar
 
     # --- DNI ---
     @property

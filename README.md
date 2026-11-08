@@ -38,8 +38,8 @@ citarural-grupo04/
 ## Estado del proyecto
 
 - [x] Clase Paciente
-- [ ] Clase Médico
-- [ ] Clase RegistrarCita
+- [x] Clase Médico
+- [x] Clase RegistrarCita
 - [ ] Menú en main.py
 - [ ] Diagrama de clases UML
 - [ ] Informe técnico
