@@ -14,7 +14,8 @@ def mostrar_menu():
     print("2. Registrar médico")
     print("3. Registrar cita")
     print("4. Ver citas")
-    print("5. Salir")
+    print("5. Cambiar estado de una cita")
+    print("6. Salir")
 
 def registrar_paciente():
     print("\n--- Registrar paciente ---")
@@ -109,6 +110,36 @@ def ver_citas():
 
     print(f"\nTotal de citas: {len(citas)}")
 
+def cambiar_estado_cita():
+    print("\n--- Cambiar estado de una cita ---")
+
+    if len(citas) == 0:
+        print("Todavía no hay citas registradas.")
+        return
+
+    cita = elegir_de_lista(citas, "Citas registradas:")
+    print(f"\nEstado actual: {cita.estado}")
+    print("1. pendiente")
+    print("2. atendida")
+    print("3. cancelada")
+
+    while True:
+        opcion = input("Elige el nuevo estado (1-3): ")
+        match opcion:
+            case "1":
+                cita.estado = "pendiente"
+                break
+            case "2":
+                cita.estado = "atendida"
+                break
+            case "3":
+                cita.estado = "cancelada"
+                break
+            case _:
+                print("Error: elige 1, 2 o 3. Intenta de nuevo.")
+
+    print(f"Estado actualizado: {cita.estado}")
+
 def main():
     while True:
         mostrar_menu()
@@ -124,7 +155,9 @@ def main():
             case "4":
                 ver_citas()
             case "5":
-                print("¡Hasta luego! Gracias por usar el sistema.")
+                cambiar_estado_cita()
+            case "6":
+                print("¡Hasta luego!")
                 break
             case _:
                 print("Opción inválida, intenta de nuevo.")
