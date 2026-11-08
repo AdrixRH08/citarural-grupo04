@@ -63,6 +63,52 @@ def registrar_medico():
     print(f"Médico registrado: {medico}")
     print(f"Total de médicos: {len(medicos)}")
 
+def elegir_de_lista(lista, titulo):
+    print(f"\n{titulo}")
+    for i, item in enumerate(lista, start=1):
+        print(f"{i}. {item}")
+
+    while True:
+        eleccion = input("Elige un número: ")
+        if eleccion.isdigit() and 1 <= int(eleccion) <= len(lista):
+            return lista[int(eleccion) - 1]
+        print("Error: elige un número de la lista. Intenta de nuevo.")
+
+def registrar_cita():
+    print("\n--- Registrar cita ---")
+
+    if len(pacientes) == 0:
+        print("Primero debes registrar al menos un paciente.")
+        return
+    if len(medicos) == 0:
+        print("Primero debes registrar al menos un médico.")
+        return
+
+    paciente = elegir_de_lista(pacientes, "Pacientes registrados:")
+    medico = elegir_de_lista(medicos, "Médicos registrados:")
+    fecha = input("Fecha (AAAA-MM-DD): ")
+    hora = input("Hora (HH:MM): ")
+    motivo = input("Motivo de la consulta: ")
+
+    cita = RegistrarCita(paciente, medico, fecha, hora, motivo)
+    citas.append(cita)
+    print("\nCita registrada:")
+    print(cita)
+    print(f"Total de citas: {len(citas)}")
+
+def ver_citas():
+    print("\n--- Lista de citas ---")
+
+    if len(citas) == 0:
+        print("Todavía no hay citas registradas.")
+        return
+
+    for i, cita in enumerate(citas, start=1):
+        print(f"\nCita {i}")
+        print(cita)
+
+    print(f"\nTotal de citas: {len(citas)}")
+
 def main():
     while True:
         mostrar_menu()
@@ -74,11 +120,11 @@ def main():
             case "2":
                 registrar_medico()
             case "3":
-                print("Registrar cita (pendiente)")
+                registrar_cita()
             case "4":
-                print("Ver citas (pendiente)")
+                ver_citas()
             case "5":
-                print("Hasta luego")
+                print("¡Hasta luego! Gracias por usar el sistema.")
                 break
             case _:
                 print("Opción inválida, intenta de nuevo.")
