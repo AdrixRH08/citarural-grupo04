@@ -1,11 +1,11 @@
-class Paciente:
+from persona import Persona
+
+
+class Paciente(Persona):
     def __init__(self, dni, nombres, apellidos, fecha_nacimiento, telefono):
+        Persona.__init__(self, nombres, apellidos, telefono)
         self._dni = None
-        self._nombres = nombres
-        self._apellidos = apellidos
         self._fecha_nacimiento = fecha_nacimiento
-        self._telefono = None
-        self.telefono = telefono
         self.dni = dni  # pasa por el setter para validar
 
     # --- DNI ---
@@ -20,24 +20,6 @@ class Paciente:
         else:
             raise ValueError("El DNI debe tener 8 dígitos numéricos.")
 
-    # --- Nombres ---
-    @property
-    def nombres(self):
-        return self._nombres
-
-    @nombres.setter
-    def nombres(self, valor):
-        self._nombres = valor
-
-    # --- Apellidos ---
-    @property
-    def apellidos(self):
-        return self._apellidos
-
-    @apellidos.setter
-    def apellidos(self, valor):
-        self._apellidos = valor
-
     # --- Fecha de nacimiento ---
     @property
     def fecha_nacimiento(self):
@@ -46,18 +28,6 @@ class Paciente:
     @fecha_nacimiento.setter
     def fecha_nacimiento(self, valor):
         self._fecha_nacimiento = valor
-
-    # --- Teléfono ---
-    @property
-    def telefono(self):
-        return self._telefono
-
-    @telefono.setter
-    def telefono(self, valor):
-        if len(valor) == 9 and valor.isdigit():
-            self._telefono = valor
-        else:
-            raise ValueError("El teléfono debe tener 9 dígitos numéricos.")
 
     def __str__(self):
         return f"{self.nombres} {self.apellidos} (DNI: {self.dni})"
