@@ -25,6 +25,7 @@ citarural-grupo04/
 ├── main.py
 ├── paciente.py
 ├── medico.py
+├── persona.py
 ├── registrar_cita.py
 └── README.md
 ```
@@ -41,5 +42,5 @@ citarural-grupo04/
 - [x] Clase Médico
 - [x] Clase RegistrarCita
 - [x] Menú en main.py
-- [ ] Diagrama de clases UML
+- [x] Diagrama de clases UML
 - [ ] Informe técnico
