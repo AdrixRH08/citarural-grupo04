@@ -1,6 +1,6 @@
 from paciente import Paciente
 from medico import Medico
-from registrar_cita import RegistrarCita
+from registrar_cita import RegistrarCita as Cita
 
 # Listas donde se guardarán los datos mientras el programa esté abierto
 pacientes = []
@@ -15,7 +15,8 @@ def mostrar_menu():
     print("3. Registrar cita")
     print("4. Ver citas")
     print("5. Cambiar estado de una cita")
-    print("6. Salir")
+    print("6. Buscar persona por código")
+    print("7. Salir")
 
 def registrar_paciente():
     print("\n--- Registrar paciente ---")
@@ -91,7 +92,7 @@ def registrar_cita():
     hora = input("Hora (HH:MM): ")
     motivo = input("Motivo de la consulta: ")
 
-    cita = RegistrarCita(paciente, medico, fecha, hora, motivo)
+    cita = Cita(paciente, medico, fecha, hora, motivo)
     citas.append(cita)
     print("\nCita registrada:")
     print(cita)
@@ -140,6 +141,47 @@ def cambiar_estado_cita():
 
     print(f"Estado actualizado: {cita.estado}")
 
+def buscar_persona_por_codigo():
+    print("\n--- Buscar persona por código ---")
+    print("1. Buscar paciente por DNI")
+    print("2. Buscar médico por CMP")
+
+    opcion = input("Selecciona el tipo de búsqueda: ")
+
+    if opcion == "1":
+        codigo = input("Ingrese el DNI del paciente: ")
+
+        resultado = list(filter(
+            lambda paciente: paciente.dni == codigo,
+            pacientes
+        ))
+
+        if resultado:
+            print("\nPaciente encontrado:")
+            print(resultado[0])
+            print(f"Fecha de nacimiento: {resultado[0].fecha_nacimiento}")
+            print(f"Teléfono: {resultado[0].telefono}")
+        else:
+            print("No se encontró ningún paciente con ese DNI.")
+
+    elif opcion == "2":
+        codigo = input("Ingrese el CMP del médico: ")
+
+        resultado = list(filter(
+            lambda medico: medico.cmp == codigo,
+            medicos
+        ))
+
+        if resultado:
+            print("\nMédico encontrado:")
+            print(resultado[0])
+            print(f"Teléfono: {resultado[0].telefono}")
+        else:
+            print("No se encontró ningún médico con ese CMP.")
+
+    else:
+        print("Opción inválida.")
+
 def main():
     while True:
         mostrar_menu()
@@ -157,6 +199,8 @@ def main():
             case "5":
                 cambiar_estado_cita()
             case "6":
+                buscar_persona_por_codigo()
+            case "7":
                 print("¡Hasta luego!")
                 break
             case _:
