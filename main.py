@@ -236,6 +236,3 @@ def main():
                 print("Opción inválida, intenta de nuevo.")
 
 main()
-
-
-main()
