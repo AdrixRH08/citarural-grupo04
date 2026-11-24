@@ -43,4 +43,4 @@ citarural-grupo04/
 - [x] Clase RegistrarCita
 - [x] Menú en main.py
 - [x] Diagrama de clases UML
-- [ ] Informe técnico
+- [x] Informe técnico
