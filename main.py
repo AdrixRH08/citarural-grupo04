@@ -16,7 +16,8 @@ def mostrar_menu():
     print("4. Ver citas")
     print("5. Cambiar estado de una cita")
     print("6. Buscar persona por código")
-    print("7. Salir")
+    print("7. Buscar médicos por especialidad")
+    print("8. Salir")
 
 def registrar_paciente():
     print("\n--- Registrar paciente ---")
@@ -182,6 +183,32 @@ def buscar_persona_por_codigo():
     else:
         print("Opción inválida.")
 
+def buscar_medicos_por_especialidad():
+    print("\n--- Buscar médicos por especialidad ---")
+
+    if len(medicos) == 0:
+        print("Todavía no hay médicos registrados.")
+        return
+
+    especialidad = input("Ingrese la especialidad que desea buscar: ")
+
+    resultado = list(filter(
+        lambda medico: medico.especialidad.lower() == especialidad.lower(),
+        medicos
+    ))
+
+    if resultado:
+        print(f"\nMédicos encontrados en {especialidad}:")
+
+        for medico in resultado:
+            print(f"\n{medico}")
+            print(f"Teléfono: {medico.telefono}")
+
+        print(f"\nTotal de médicos encontrados: {len(resultado)}")
+
+    else:
+        print(f"No se encontraron médicos de la especialidad: {especialidad}")
+
 def main():
     while True:
         mostrar_menu()
@@ -201,10 +228,14 @@ def main():
             case "6":
                 buscar_persona_por_codigo()
             case "7":
+                buscar_medicos_por_especialidad()
+            case "8":
                 print("¡Hasta luego!")
                 break
             case _:
                 print("Opción inválida, intenta de nuevo.")
+
+main()
 
 
 main()
